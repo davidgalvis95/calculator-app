@@ -47,9 +47,8 @@ public class OperationsController<T extends OperationValues, U> {
         try {
             operationsTypeConverted = OperationType.valueOf(operationType);
         } catch (IllegalArgumentException | NullPointerException e) {
-            throw e;
-//            log.info("Operation type " + operationType + " not found, defaulting to null");
-//            operationsTypeConverted = null;
+            log.info("Operation type " + operationType + " not found, defaulting to null");
+            operationsTypeConverted = null;
         }
         final RecordListResponse recordListResponse = recordService.getUserRecords(
                 request,

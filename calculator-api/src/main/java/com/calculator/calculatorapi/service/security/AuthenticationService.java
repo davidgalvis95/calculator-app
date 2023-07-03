@@ -28,22 +28,30 @@ import java.util.stream.Collectors;
 @Service
 @Log
 public class AuthenticationService {
-    @Autowired
-    private JwtService jwtService;
+    private final JwtService jwtService;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     private static final int INITIAL_USER_BALANCE = 100;
+
+    @Autowired
+    public AuthenticationService(final JwtService jwtService,
+                                 final UserRepository userRepository,
+                                 final RoleRepository roleRepository,
+                                 final PasswordEncoder encoder,
+                                 final AuthenticationManager authenticationManager) {
+        this.jwtService = jwtService;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.encoder = encoder;
+        this.authenticationManager = authenticationManager;
+    }
 
     public JwtResponse authenticateUser(final LoginRequest loginRequest) {
 

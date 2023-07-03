@@ -1,6 +1,7 @@
 package com.calculator.calculatorapi.config;
 
 import com.calculator.calculatorapi.models.User;
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

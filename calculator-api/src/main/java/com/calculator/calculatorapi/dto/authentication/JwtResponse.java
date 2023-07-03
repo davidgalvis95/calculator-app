@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Builder
+@AllArgsConstructor
 @Value
 public class JwtResponse {
 

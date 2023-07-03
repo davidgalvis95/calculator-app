@@ -6,7 +6,8 @@ public enum OperationType {
     MULTIPLICATION("multiplication"),
     DIVISION("division"),
     SQUARE_ROOT("square root"),
-    RANDOM_STRING("random string");
+    RANDOM_STRING("random string"),
+    UNKNOWN("unknown");
 
     private final String value;
     OperationType(String value) {

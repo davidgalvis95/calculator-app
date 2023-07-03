@@ -42,11 +42,11 @@ public class AppErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(buildStandardResponse(ex.getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(ExpiredJwtException.class)
-//    public ResponseEntity<StandardResponseDto<?>> handler(ExpiredJwtException ex, WebRequest request) {
-//        return new ResponseEntity<>(buildStandardResponse(ex.getMessage(), "Jwt is either expired or malformed")
-//                , HttpStatus.UNAUTHORIZED);
-//    }
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<StandardResponseDto<?>> handler(ExpiredJwtException ex, WebRequest request) {
+        return new ResponseEntity<>(buildStandardResponse(ex.getMessage(), "Jwt is either expired or malformed")
+                , HttpStatus.UNAUTHORIZED);
+    }
 
     @ExceptionHandler(BadJwtException.class)
     public ResponseEntity<StandardResponseDto<?>> handler(SecurityException ex, WebRequest request) {

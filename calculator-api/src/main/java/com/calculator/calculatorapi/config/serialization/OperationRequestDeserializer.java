@@ -16,19 +16,19 @@ public class OperationRequestDeserializer extends JsonDeserializer<OperationRequ
         JsonNode node = jsonParser.readValueAsTree();
         JsonNode operandsNode = node.get("operands");
         OperationType operationType = objectMapper.treeToValue(node.get("operationType"), OperationType.class);
-        ObjectNode objectNode = (ObjectNode) operandsNode;
-        if (objectNode.has("seed") && objectNode.has("size")) {
+//        ObjectNode objectNode = (ObjectNode) operandsNode;
+        if (operandsNode.has("seed") && operandsNode.has("size")) {
             return new StringOperationRequest(
                     new StringOperationValues(
-                            objectNode.hasNonNull("seed") ? objectNode.get("seed").asDouble() : null,
-                            objectNode.get("size").asInt()),
+                            operandsNode.hasNonNull("seed") ? operandsNode.get("seed").asDouble() : null,
+                            operandsNode.get("size").asInt()),
                     operationType
             );
         } else {
             return new NumberOperationRequest(
                     new NumberOperationValues(
-                            objectNode.get("a").asInt(),
-                            objectNode.get("b").asInt()),
+                            operandsNode.get("a").asInt(),
+                            operandsNode.get("b").asInt()),
                     operationType
             );
         }
