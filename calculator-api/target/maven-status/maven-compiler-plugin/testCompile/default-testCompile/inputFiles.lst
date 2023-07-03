@@ -1,1 +1,11 @@
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/serialization/OperationRequestDeserializerTest.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/CalculatorApiApplicationTests.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/controller/OperationsControllerTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/service/security/AuthenticationServiceTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/controller/UserControllerTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/service/calculation/StringOperationServiceTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/service/user/UserServiceTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/controller/AuthControllerTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/service/record/RecordServiceTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/service/calculation/NumberOperationsServiceTest.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/test/java/com/calculator/calculatorapi/utils/UtilsTest.java

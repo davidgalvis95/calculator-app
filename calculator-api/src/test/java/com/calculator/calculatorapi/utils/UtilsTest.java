@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -42,10 +41,8 @@ public class UtilsTest {
         final int pageSize = 10;
         final String additionalParams = "&operationType=ADDITION";
         final int totalPages = 5;
-        final String expectedNextPageUri = "https://randomHost/api/v1/randomUri?pageNumber=2&pageSize=10"
+        final String expectedNextPageUri = "/api/v1/randomUri?pageNumber=2&pageSize=10"
                 + additionalParams;
-        when(request.getScheme()).thenReturn("https://");
-        when(request.getServerName()).thenReturn("randomHost");
         when(request.getRequestURI()).thenReturn("/api/v1/randomUri");
         // When
         final String nextPageUri = Utils.convertCurrentUriToNextPageUri(request,
@@ -55,8 +52,6 @@ public class UtilsTest {
                 totalPages);
         // Then
         assertEquals(expectedNextPageUri, nextPageUri);
-        verify(request, times(1)).getScheme();
-        verify(request, times(1)).getServerName();
         verify(request, times(1)).getRequestURI();
     }
 

@@ -1,1 +1,11 @@
+com/calculator/calculatorapi/controller/OperationsControllerTest.class
+com/calculator/calculatorapi/controller/AuthControllerTest.class
+com/calculator/calculatorapi/utils/UtilsTest.class
+com/calculator/calculatorapi/service/record/RecordServiceTest.class
+com/calculator/calculatorapi/service/security/AuthenticationServiceTest.class
+com/calculator/calculatorapi/serialization/OperationRequestDeserializerTest.class
+com/calculator/calculatorapi/service/calculation/NumberOperationsServiceTest.class
+com/calculator/calculatorapi/controller/UserControllerTest.class
+com/calculator/calculatorapi/service/user/UserServiceTest.class
+com/calculator/calculatorapi/service/calculation/StringOperationServiceTest.class
 com/calculator/calculatorapi/CalculatorApiApplicationTests.class

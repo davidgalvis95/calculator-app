@@ -14,9 +14,7 @@ public class Utils {
                                                         final int totalPages) {
         String nextPageUri = null;
         if(pageNumber + 1 <= totalPages) {
-            nextPageUri = request.getScheme() +
-                    request.getServerName() +
-                    request.getRequestURI() +
+            nextPageUri = request.getRequestURI() +
                     "?pageNumber=" + (pageNumber + 1) +
                     "&pageSize=" + pageSize +
                     additionalParams;

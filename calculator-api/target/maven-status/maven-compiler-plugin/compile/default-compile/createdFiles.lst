@@ -26,7 +26,6 @@ com/calculator/calculatorapi/service/record/RecordService.class
 com/calculator/calculatorapi/dto/operations/StringOperationResult.class
 com/calculator/calculatorapi/dto/user/UserListResponse$UserListResponseBuilder.class
 com/calculator/calculatorapi/models/Role.class
-com/calculator/calculatorapi/config/AuthEntryPointJwt.class
 com/calculator/calculatorapi/models/User$UserBuilder.class
 com/calculator/calculatorapi/dto/operations/NumberOperationResult.class
 com/calculator/calculatorapi/dto/exception/ObjectNotFoundException.class
@@ -50,7 +49,6 @@ com/calculator/calculatorapi/models/RoleType.class
 com/calculator/calculatorapi/service/calculation/NumberOperationsService$1.class
 com/calculator/calculatorapi/config/WebSecurityConfig.class
 com/calculator/calculatorapi/dto/operations/StringOperationResult$StringOperationResultBuilder.class
-com/calculator/calculatorapi/config/handler/AppExceptionHandler.class
 com/calculator/calculatorapi/dto/user/UserListResponse.class
 com/calculator/calculatorapi/config/UserDetailsServiceImpl.class
 com/calculator/calculatorapi/dto/operations/OperationResult.class

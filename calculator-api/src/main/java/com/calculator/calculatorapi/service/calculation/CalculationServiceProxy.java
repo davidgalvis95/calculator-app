@@ -32,7 +32,6 @@ public class CalculationServiceProxy<T extends OperationValues, U> implements Ca
 
     private CalculationService<T, U> matchService(Class<?> importantServiceClass) {
         return importantServices.stream()
-//                .filter(service -> service.getClass().equals(importantServiceClass))
                 .filter(importantServiceClass::isInstance)
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("No service instance of " + CalculationService.class + " matches required criteria"));

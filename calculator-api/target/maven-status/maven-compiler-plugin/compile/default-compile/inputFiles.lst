@@ -1,5 +1,4 @@
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/dto/authentication/LoginRequest.java
-/Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/config/handler/AppExceptionHandler.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/service/calculation/NumberOperationsService.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/dto/user/UserListResponse.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/models/OperationType.java
@@ -21,6 +20,7 @@
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/dto/operations/StringOperationResult.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/controller/AppErrorHandler.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/repository/OperationRepository.java
+/Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/config/GlobalCalculatorFilter.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/service/record/RecordService.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/models/OperationState.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/dto/operations/StringOperationRequest.java
@@ -45,7 +45,6 @@
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/service/calculation/CalculationService.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/service/user/UserService.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/dto/exception/BadJwtException.java
-/Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/config/AuthEntryPointJwt.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/models/Role.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/config/WebSecurityConfig.java
 /Users/davidgalvis/Documents/calculator-app/calculator-api/src/main/java/com/calculator/calculatorapi/config/JwtAuthFilter.java
