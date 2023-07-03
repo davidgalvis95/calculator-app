@@ -1,0 +1,18 @@
+calculator:
+    app:
+        jwt-expiration-ms: 86400000
+        jwt-secret: super-secret
+spring:
+    datasource:
+        password: password
+        url: jdbc:postgresql://localhost:5432/calculator_db
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                jdbc:
+                    lob:
+                        non_contextual_creation: true

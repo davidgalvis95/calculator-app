@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: postgres
+  profiles:
+    active: dev
