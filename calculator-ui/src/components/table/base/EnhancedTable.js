@@ -51,7 +51,8 @@ export const EnhancedTable = (props) => {
     filterConfig,
     enableSelect,
     pagingData,
-    handlePageChange
+    handlePageChange,
+    handleAppliedFilter
   } = props;
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(defaultSelectedSortField);
@@ -62,11 +63,10 @@ export const EnhancedTable = (props) => {
   const [filteredRows, setFilteredRows] = useState(rowsData);
   const [emptyRows, setEmptyRows] = useState(0);
   const [visibleRows, setVisibleRows] = useState(rowsData);
-  // const [totalRows, serTotalRows] = useState(pagingData.totalRows);
 
   useEffect(() => {
     if (statusFilter) {
-      setFilteredRows(rowsData.filter((row) => rowMatchesFilter(row)));
+      handleFilterApplied();
     } else {
       setFilteredRows(rowsData);
     }
@@ -85,6 +85,21 @@ export const EnhancedTable = (props) => {
     ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     setVisibleRows(newVisibleRows);
   }, [filteredRows, order, orderBy, page, rowsPerPage]);
+
+  const handleFilterApplied = () => {
+    const appliedFilters = statusFilter.filter(
+      (conf) => conf.filterValue !== ""
+    );
+    const additionalQueryParams = appliedFilters
+      .map((filter) => {
+        const realValue = filter.values.filter(
+          (value) => value.toLowerCase() === filter.filterValue
+        );
+        return `&${filter.filterFieldName}=${realValue}`;
+      })
+      .join("");
+      handleAppliedFilter(additionalQueryParams)
+  }
 
   const rowMatchesFilter = (row) => {
     if (statusFilter.length > 0) {

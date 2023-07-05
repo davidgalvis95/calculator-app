@@ -22,21 +22,15 @@ export const HistoryTable = () => {
   //   );
   // }, []);
 
-  const handleAppliedFilter = (filterConfig, pageSize) => {
-    const appliedFilters = filterConfig.filter(
-      (conf) => conf.filterValue !== ""
-    );
-    const additionalQueryParams = appliedFilters
-      .map((filter) => `&${filter.filterFieldName}=${filter.filterValue}`)
-      .join("");
-    setResponse(
-      operationsService.getRecords(
-        undefined,
-        DEFAULT_PAGE,
-        pageSize,
-        additionalQueryParams
-      )
-    );
+  const handleAppliedFilter = (additionalQueryParams) => {
+    // setResponse(
+    //   operationsService.getRecords(
+    //     undefined,
+    //     DEFAULT_PAGE,
+    //     DEFAULT_PAGE_SIZE,
+    //     additionalQueryParams
+    //   )
+    // );
   };
 
   const handlePageChange = (type) => {
@@ -73,8 +67,9 @@ export const HistoryTable = () => {
       title={"Operations History"}
       filterConfig={sampleHistoryFilterConfig}
       enableSelect={false}
-      pagingData={{totalRows: 20, totalPages: 2}}
+      pagingData={{ totalRows: 20, totalPages: 2 }}
       handlePageChange={handlePageChange}
+      handleAppliedFilter={handleAppliedFilter}
     />
   );
 };
