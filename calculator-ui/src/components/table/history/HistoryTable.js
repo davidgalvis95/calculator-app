@@ -5,45 +5,55 @@ import {
   sampleHistoryFilterConfig,
 } from "./sampleData";
 import useOperationsApi from "../../../hooks/useOperationsApi";
-// import { useEffect, useState } from "react";
-// // import { baseApiUrl } from "../../../axios/CalculatorApi";
+import { useEffect, useState } from "react";
+import { baseApiUrl } from "../../../axios/CalculatorApi";
 
-// const DEFAULT_PAGE = 1;
-// const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 10;
+const PREV_PAGE = "prev";
+const NEXT_PAGE = "next";
 
 export const HistoryTable = () => {
   const operationsService = useOperationsApi();
-  // const [response, setResponse] = useState({});
+  const [response, setResponse] = useState({});
   // useEffect(() => {
   //   setResponse(
   //     operationsService.getRecords(undefined, DEFAULT_PAGE, DEFAULT_PAGE_SIZE)
   //   );
   // }, []);
 
-  // const handleAppliedFilter = (filterConfig, pageSize) => {
-  //   const appliedFilters = filterConfig.filter(
-  //     (conf) => conf.filterValue !== ""
-  //   );
-  //   // const additionalQueryParams = appliedFilters
-  //   //   .map((filter) => `&${filter.filterFieldName}=${filter.filterValue}`)
-  //   //   .join("");
-  //   // setResponse(
-  //   //   operationsService.getRecords(
-  //   //     undefined,
-  //   //     DEFAULT_PAGE,
-  //   //     pageSize,
-  //   //     additionalQueryParams
-  //   //   )
-  //   // );
-  // };
+  const handleAppliedFilter = (filterConfig, pageSize) => {
+    const appliedFilters = filterConfig.filter(
+      (conf) => conf.filterValue !== ""
+    );
+    const additionalQueryParams = appliedFilters
+      .map((filter) => `&${filter.filterFieldName}=${filter.filterValue}`)
+      .join("");
+    setResponse(
+      operationsService.getRecords(
+        undefined,
+        DEFAULT_PAGE,
+        pageSize,
+        additionalQueryParams
+      )
+    );
+  };
 
-  // const handleNextPage = (filterConfig) => {
-  //   // setResponse(
-  //   //   operationsService.getRecords(
-  //   //     response.nextPageToken.substring(baseApiUrl.length)
-  //   //   )
-  //   // );
-  // };
+  const handlePageChange = (type) => {
+    // if(PREV_PAGE) {
+    //   setResponse(
+    //     operationsService.getRecords(
+    //       response.prevPageToken.substring(baseApiUrl.length)
+    //     )
+    //   );
+    // }else {
+    //   setResponse(
+    //     operationsService.getRecords(
+    //       response.nextPageToken.substring(baseApiUrl.length)
+    //     )
+    //   );
+    // }
+  };
 
   return (
     <EnhancedTable
@@ -63,6 +73,8 @@ export const HistoryTable = () => {
       title={"Operations History"}
       filterConfig={sampleHistoryFilterConfig}
       enableSelect={false}
+      pagingData={{totalRows: 20, totalPages: 2}}
+      handlePageChange={handlePageChange}
     />
   );
 };

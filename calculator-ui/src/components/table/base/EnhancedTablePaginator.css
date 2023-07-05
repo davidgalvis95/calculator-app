@@ -1,0 +1,58 @@
+.pagingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size: 13px;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pagingElement {
+    margin-left: 25px;
+}
+
+.pagingPrevButton {
+    margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.pagingNextButton {
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.pagingPrevButton:hover {
+    background-color: #ecf0f1;
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.pagingPrevButton:disabled {
+    opacity: 50%;
+    cursor: auto;
+}
+
+.pagingNextButton:hover {
+    background-color: #ecf0f1;
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.pagingPrevButton:disabled {
+    opacity: 50%;
+    cursor: auto;
+}

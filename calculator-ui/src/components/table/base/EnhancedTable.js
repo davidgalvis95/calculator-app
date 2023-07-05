@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
-import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import Sidebar from "../../sidebar/Sidebar";
 import PropTypes from "prop-types";
 import { EnhancedTableToolbar } from "./EnhancedTableToolBar";
 import { EnhancedTableHead } from "./EnhancedTableHead";
 import { EnhancedTableBody } from "./EnhancedTableBody";
+import { EnhancedTablePaginator } from "./EnhancedTablePaginator";
+
+
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -48,6 +50,8 @@ export const EnhancedTable = (props) => {
     title,
     filterConfig,
     enableSelect,
+    pagingData,
+    handlePageChange
   } = props;
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(defaultSelectedSortField);
@@ -58,6 +62,7 @@ export const EnhancedTable = (props) => {
   const [filteredRows, setFilteredRows] = useState(rowsData);
   const [emptyRows, setEmptyRows] = useState(0);
   const [visibleRows, setVisibleRows] = useState(rowsData);
+  // const [totalRows, serTotalRows] = useState(pagingData.totalRows);
 
   useEffect(() => {
     if (statusFilter) {
@@ -129,8 +134,8 @@ export const EnhancedTable = (props) => {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleChangePage = (type) => {
+    handlePageChange(type)
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -152,18 +157,18 @@ export const EnhancedTable = (props) => {
     setStatusFilter(statusFilterCopy);
   };
 
+  const handleNewFilterEffects = () => {};
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
-  console.log(visibleRows.length);
-
   return (
     <div>
       <h2>{title}</h2>
-      <Box sx={{ width: "100%"}}>
+      <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar
             numSelected={selected.length}
@@ -196,14 +201,12 @@ export const EnhancedTable = (props) => {
               />
             </Table>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={filteredRows.length}
+          <EnhancedTablePaginator
             rowsPerPage={rowsPerPage}
             page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
+            totalPages={pagingData.totalPages}
+            totalRows={pagingData.totalRows}
+            handleChangePage={handleChangePage}
           />
         </Paper>
       </Box>
