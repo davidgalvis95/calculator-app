@@ -10,6 +10,8 @@ import java.util.List;
 public class UserListResponse {
     int page;
     int totalPages;
+    int totalUsers;
     String nextPageToken;
+    String prevPageToken;
     List<UserDto> users;
 }

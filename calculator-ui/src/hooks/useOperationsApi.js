@@ -5,14 +5,16 @@ const useOperationsApi = () => {
   const { handle } = useHandleResponse();
 
   const getRecords = async (
+    nextPageToken,
     pageNumber,
     pageSize,
-    operationType,
-    operationStatus
+    additionalParams
   ) => {
     try {
       const response = await calculatorApiService().get(
-        `/records?pageNumber=${pageNumber}&pageSize=${pageSize}&operationType=${operationType}&operationStatus=${operationStatus}`
+        nextPageToken
+          ? nextPageToken
+          : `/records?pageNumber=${pageNumber}&pageSize=${pageSize}${additionalParams}`
       ).data;
       return handle(response);
     } catch (error) {

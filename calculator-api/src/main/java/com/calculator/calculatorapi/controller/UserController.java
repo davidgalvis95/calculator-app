@@ -61,7 +61,19 @@ public class UserController {
         return ResponseEntity.ok().body(standardResponseDto);
     }
 
-    @GetMapping
+    @PostMapping("/upgrade/{userId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<StandardResponseDto<?>> grandAdminAccess(@PathVariable final UUID userId) {
+        userService.grandAdminAccess(userId);
+        final StandardResponseDto<?> standardResponseDto = new StandardResponseDto<>(
+                null,
+                "User " + userId + " is now an ADMIN",
+                null
+        );
+        return ResponseEntity.ok().body(standardResponseDto);
+    }
+
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<StandardResponseDto<UserListResponse>> getUsers(
             final HttpServletRequest request,

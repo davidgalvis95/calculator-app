@@ -3,6 +3,8 @@ package com.calculator.calculatorapi.service.user;
 import com.calculator.calculatorapi.dto.exception.ObjectNotFoundException;
 import com.calculator.calculatorapi.dto.user.UserDto;
 import com.calculator.calculatorapi.dto.user.UserListResponse;
+import com.calculator.calculatorapi.models.Role;
+import com.calculator.calculatorapi.models.RoleType;
 import com.calculator.calculatorapi.models.User;
 import com.calculator.calculatorapi.models.UserStatus;
 import com.calculator.calculatorapi.repository.UserRepository;
@@ -14,6 +16,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -46,6 +49,18 @@ public class UserService {
         final User user = userRepository.findUserById(userId)
                 .orElseThrow(() -> new ObjectNotFoundException("User with id " + userId + " not found"));
         user.setStatus(isDeactivationRequest ? UserStatus.INACTIVE : UserStatus.ACTIVE);
+        userRepository.save(user);
+    }
+
+    public void grandAdminAccess(final UUID userId) {
+        final User user = userRepository.findUserById(userId)
+                .orElseThrow(() -> new ObjectNotFoundException("User with id " + userId + " not found"));
+        final Set<Role> roles = user.getRoles();
+        if(roles.stream().anyMatch(role -> role.getType().equals(RoleType.ADMIN))) {
+            throw new IllegalArgumentException("Cannot change user to ADMIN because it's already an ADMIN");
+        }else{
+            roles.add(Role.builder().type(RoleType.ADMIN).build());
+        }
         userRepository.save(user);
     }
 

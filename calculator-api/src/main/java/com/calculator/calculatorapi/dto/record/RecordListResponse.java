@@ -11,6 +11,8 @@ import java.util.List;
 public class RecordListResponse {
     int page;
     int totalPages;
+    int totalRecords;
     String nextPageToken;
+    String prevPageToken;
     List<RecordDto> records;
 }
