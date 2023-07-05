@@ -7,8 +7,11 @@ import { EnhancedTableRow } from "./EnhancedTableRow";
 
 export const EnhancedTableBody = (props) => {
   const { rowsData, handleSelectClick, selected, emptyRows, enableSelect } = props;
-  const isSelected = (id) => selected.indexOf(id) !== -1;
-
+  const isSelected = (id) =>  {
+    console.log(id, selected.indexOf(id) !== -1 )
+    return selected.indexOf(id) !== -1 
+  };
+  console.log(rowsData)
 
   return (
     <TableBody>

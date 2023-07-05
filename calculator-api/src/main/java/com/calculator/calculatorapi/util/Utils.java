@@ -7,15 +7,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.UUID;
 
 public class Utils {
-    public static String convertCurrentUriToNextPageUri(final HttpServletRequest request,
+    public static String convertCurrentUriToPageUri(final HttpServletRequest request,
                                                         final int pageNumber,
                                                         final int pageSize,
                                                         final String additionalParams,
-                                                        final int totalPages) {
+                                                        final int totalPages,
+                                                        final boolean isNextPage) {
         String nextPageUri = null;
         if(pageNumber + 1 <= totalPages) {
             nextPageUri = request.getRequestURI() +
-                    "?pageNumber=" + (pageNumber + 1) +
+                    "?pageNumber=" + (isNextPage ? pageNumber + 1 : pageNumber - 1) +
                     "&pageSize=" + pageSize +
                     additionalParams;
         }

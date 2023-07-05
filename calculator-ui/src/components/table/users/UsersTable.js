@@ -59,6 +59,12 @@ const headers = [
   },
 ];
 
+const processSelected = (selected) => {
+
+  //selected ids
+  selected.forEach()
+}
+
 export const UsersTable = () => {
   return (
     <EnhancedTable

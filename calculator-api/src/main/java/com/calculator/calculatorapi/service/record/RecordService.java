@@ -3,10 +3,8 @@ package com.calculator.calculatorapi.service.record;
 import com.calculator.calculatorapi.dto.exception.ObjectNotFoundException;
 import com.calculator.calculatorapi.dto.record.RecordDto;
 import com.calculator.calculatorapi.dto.record.RecordListResponse;
-import com.calculator.calculatorapi.models.Operation;
-import com.calculator.calculatorapi.models.OperationType;
+import com.calculator.calculatorapi.models.*;
 import com.calculator.calculatorapi.models.Record;
-import com.calculator.calculatorapi.models.User;
 import com.calculator.calculatorapi.repository.OperationRepository;
 import com.calculator.calculatorapi.repository.RecordRepository;
 import com.calculator.calculatorapi.repository.UserRepository;
@@ -53,12 +51,28 @@ public class RecordService {
             }
 
             final int totalPages = recordsPage.getTotalPages();
-            final String nextPageUri = Utils.convertCurrentUriToNextPageUri(
-                    request,
-                    pageNumber,
-                    pageSize,
-                    operationsTypeString,
-                    totalPages);
+            final long totalElements = recordsPage.getTotalElements();
+            String nextPageUri = null;
+            if (pageNumber < totalPages) {
+                nextPageUri = Utils.convertCurrentUriToPageUri(
+                        request,
+                        pageNumber,
+                        pageSize,
+                        operationsTypeString,
+                        totalPages,
+                        true);
+            }
+
+            String prevPageUri = null;
+            if (pageNumber > 1) {
+                prevPageUri = Utils.convertCurrentUriToPageUri(
+                        request,
+                        pageNumber,
+                        pageSize,
+                        operationsTypeString,
+                        totalPages,
+                        false);
+            }
 
             final List<Record> records = recordsPage.getContent();
             final List<RecordDto> recordDtos = records.stream()
@@ -66,9 +80,11 @@ public class RecordService {
                     .toList();
 
             return RecordListResponse.builder()
+                    .totalRecords(totalElements)
                     .totalPages(totalPages)
                     .page(pageNumber)
                     .nextPageToken(nextPageUri)
+                    .prevPageToken(prevPageUri)
                     .records(recordDtos)
                     .build();
         } else {
@@ -76,7 +92,10 @@ public class RecordService {
         }
     }
 
-    private Page<Record> getRecordsByOperationType(int pageNumber, int pageSize, OperationType operationType, User user) {
+    private Page<Record> getRecordsByOperationType(int pageNumber,
+                                                   int pageSize,
+                                                   OperationType operationType,
+                                                   User user) {
         final Operation operation = operationRepository.findOperationByType(operationType)
                 .orElseThrow(() -> new ObjectNotFoundException("Could not find operation for type " + operationType));
         return recordRepository.findRecordsByUserIdAndOperationIdOrderByDateTimeDesc(

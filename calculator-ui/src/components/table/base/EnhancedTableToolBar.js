@@ -8,7 +8,7 @@ import "./EnhancedTableToolBar.css";
 import { Button } from "@mui/material";
 
 export const EnhancedTableToolbar = (props) => {
-  const { numSelected, handleStatusFilterChange, filters } = props;
+  const { numSelected, handleStatusFilterChange, filters, processSelected } = props;
 
   const handleStatusFilterChange1 = (event, filter1) => {
     handleStatusFilterChange(event, filter1);
@@ -25,47 +25,47 @@ export const EnhancedTableToolbar = (props) => {
       }}
     >
       <div>
-      {filters.map((filter) => {
-        return (
-          <FormControl sx={{ ml: 2 }}>
-            <div className="filter">{filter.display}</div>
-            <Select
-              key={filter.filterFieldName}
-              sx={{
-                maxHeight: "25px",
-                fontSize: "15px",
-                backgroundColor: "#fff",
-              }}
-              value={filter.filterValue}
-              onChange={(event) => {
-                // console.log(filter1)
-                handleStatusFilterChange1(event, filter);
-              }}
-              displayEmpty
-              inputProps={{ "aria-label": "Select status" }}
-            >
-              <MenuItem
-                key={"all"}
-                sx={{ maxHeight: "25px", fontSize: "15px" }}
-                value=""
+        {filters.map((filter) => {
+          return (
+            <FormControl sx={{ ml: 2 }}>
+              <div className="filter">{filter.display}</div>
+              <Select
+                key={filter.filterFieldName}
+                sx={{
+                  maxHeight: "25px",
+                  fontSize: "15px",
+                  backgroundColor: "#fff",
+                }}
+                value={filter.filterValue}
+                onChange={(event) => {
+                  // console.log(filter1)
+                  handleStatusFilterChange1(event, filter);
+                }}
+                displayEmpty
+                inputProps={{ "aria-label": "Select status" }}
               >
-                All
-              </MenuItem>
-              {filter.values.map((value) => (
                 <MenuItem
-                  key={value.toLowerCase()}
+                  key={"all"}
                   sx={{ maxHeight: "25px", fontSize: "15px" }}
-                  value={value.toLowerCase()}
+                  value=""
                 >
-                  {value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}
+                  All
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        );
-      })}
+                {filter.values.map((value) => (
+                  <MenuItem
+                    key={value.toLowerCase()}
+                    sx={{ maxHeight: "25px", fontSize: "15px" }}
+                    value={value.toLowerCase()}
+                  >
+                    {value.charAt(0).toUpperCase() +
+                      value.slice(1).toLowerCase()}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          );
+        })}
       </div>
-
 
       {numSelected > 0 && (
         <Button
@@ -76,6 +76,7 @@ export const EnhancedTableToolbar = (props) => {
               backgroundColor: "#e77f67",
             },
           }}
+          onClick={processSelected}
         >
           Switch Status
         </Button>

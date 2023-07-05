@@ -52,7 +52,8 @@ export const EnhancedTable = (props) => {
     enableSelect,
     pagingData,
     handlePageChange,
-    handleAppliedFilter
+    handleAppliedFilter,
+    handleSelected
   } = props;
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(defaultSelectedSortField);
@@ -85,6 +86,10 @@ export const EnhancedTable = (props) => {
     ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     setVisibleRows(newVisibleRows);
   }, [filteredRows, order, orderBy, page, rowsPerPage]);
+
+  useEffect(() => {
+    console.log(selected);
+  }, [selected])
 
   const handleFilterApplied = () => {
     const appliedFilters = statusFilter.filter(
@@ -122,6 +127,7 @@ export const EnhancedTable = (props) => {
   };
 
   const handleSelectAllClick = (event) => {
+    console.log(event.target.checked)
     if (event.target.checked) {
       const newSelected = rowsData.map((row) => row.id);
       setSelected(newSelected);
@@ -131,6 +137,7 @@ export const EnhancedTable = (props) => {
   };
 
   const handleSelectClick = (event, id) => {
+    console.log(id)
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -189,6 +196,7 @@ export const EnhancedTable = (props) => {
             numSelected={selected.length}
             handleStatusFilterChange={handleStatusFilterChange}
             filters={statusFilter}
+            processSelected={() => handleSelected(selected)}
           />
 
           <TableContainer>

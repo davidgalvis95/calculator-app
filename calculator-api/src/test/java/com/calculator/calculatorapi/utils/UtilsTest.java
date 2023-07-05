@@ -45,11 +45,12 @@ public class UtilsTest {
                 + additionalParams;
         when(request.getRequestURI()).thenReturn("/api/v1/randomUri");
         // When
-        final String nextPageUri = Utils.convertCurrentUriToNextPageUri(request,
+        final String nextPageUri = Utils.convertCurrentUriToPageUri(request,
                 pageNumber,
                 pageSize,
                 additionalParams,
-                totalPages);
+                totalPages,
+                true);
         // Then
         assertEquals(expectedNextPageUri, nextPageUri);
         verify(request, times(1)).getRequestURI();

@@ -1,6 +1,6 @@
 export const sampleHistoryRows = [
   {
-    id: "a6b290be-b641-469b-ac80-f79cfee837b9",
+    id: "c6b290be-b641-469b-ac80-f79cfee837b8",
     userId: "a6b290be-b641-469b-ac80-f79cfee837b9",
     userEmail: "user1@example.com",
     amount: 100,

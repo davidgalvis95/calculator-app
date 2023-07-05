@@ -14,7 +14,8 @@ const useOperationsApi = () => {
       const response = await calculatorApiService().get(
         nextPageToken
           ? nextPageToken
-          : `/records?pageNumber=${pageNumber}&pageSize=${pageSize}${additionalParams}`
+          : `/records?pageNumber=${pageNumber}&pageSize=${pageSize}${additionalParams}`,
+          {}
       ).data;
       return handle(response);
     } catch (error) {

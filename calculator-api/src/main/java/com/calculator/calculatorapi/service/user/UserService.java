@@ -77,18 +77,36 @@ public class UserService {
             usersPage = userRepository.findAll(PageRequest.of(pageNumber - 1, pageSize));
         }
         final int totalPages = usersPage.getTotalPages();
+        final long totalElements = usersPage.getTotalElements();
         final List<User> users = usersPage.getContent();
 
-        final String nextPageUri = Utils.convertCurrentUriToNextPageUri(
-                request,
-                pageNumber,
-                pageSize,
-                userStatusString,
-                totalPages);
+        String nextPageUri = null;
+        if (pageNumber < totalPages) {
+            nextPageUri = Utils.convertCurrentUriToPageUri(
+                    request,
+                    pageNumber,
+                    pageSize,
+                    userStatusString,
+                    totalPages,
+                    true);
+        }
+
+        String prevPageUri = null;
+        if (pageNumber > 1) {
+            prevPageUri = Utils.convertCurrentUriToPageUri(
+                    request,
+                    pageNumber,
+                    pageSize,
+                    userStatusString,
+                    totalPages,
+                    true);
+        }
 
         return UserListResponse.builder()
                 .totalPages(totalPages)
+                .totalUsers(totalElements)
                 .nextPageToken(nextPageUri)
+                .prevPageToken(prevPageUri)
                 .page(pageNumber)
                 .users(mapUsersToUserDtos(users))
                 .build();
