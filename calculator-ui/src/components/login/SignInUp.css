@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+.container {
+  text-align: center;
+  background-color: #82ccdd;
+  padding-top: 5%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.loginTitle{
+  font-size: 32px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.loginInput{
+  width: 400px;
+  background-color: #f1f2f6;
+}
+
+.registerTitle{
+  font-size: 32px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.registerInput{
+  width: 400px;
+  background-color: #f1f2f6;
+}
